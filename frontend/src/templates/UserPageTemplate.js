@@ -36,8 +36,28 @@ const UserPageTemplate = ({ children, pageType }) => (
         <StyledWrapper>
             <StyledPageHeader>
                 <Input search placeholder='Search'/>
-                <StyledHeading big as="h1">{ pageType }</StyledHeading>
+                
+                { pageType === 'note' && 
+                <>
+                <StyledHeading big as="h1">Notes</StyledHeading>
                 <StyledParagraph>6 notes</StyledParagraph>
+                </>
+                }
+
+                { pageType === 'article' &&
+                 <>
+                <StyledHeading big as="h1">Articles</StyledHeading>
+                <StyledParagraph>6 articles</StyledParagraph>
+                </>
+                }
+
+                { pageType === 'twitter' &&
+                <>
+                <StyledHeading big as="h1">Twitters</StyledHeading>
+                <StyledParagraph>6 twitters</StyledParagraph>
+                </>
+                }
+                
             </StyledPageHeader>
             <StyledGrid>
             {children}

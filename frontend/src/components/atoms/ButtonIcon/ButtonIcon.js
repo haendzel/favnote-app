@@ -18,6 +18,6 @@ const ButtonIcon = styled.button`
   &.active {
     background-color: white;
   }
- `;
+`;
 
 export default ButtonIcon;
