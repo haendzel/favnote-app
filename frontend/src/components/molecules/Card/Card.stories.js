@@ -3,6 +3,6 @@ import { storiesOf } from '@storybook/react';
 import Card from './Card';
 
 storiesOf('Molecules/Card', module)
-  .add('Note', () => <Card cardType='note'/>)
-  .add('Twitter', () => <Card cardType="twitter" />)
-  .add('Article', () => <Card cardType="article" />);
+  .add('notes', () => <Card cardType="notes" />)
+  .add('twitters', () => <Card cardType="twitters" />)
+  .add('articles', () => <Card cardType="articles" />);

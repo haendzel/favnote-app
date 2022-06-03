@@ -1,1 +1,1 @@
-# favnote-app
+# favnotes-app

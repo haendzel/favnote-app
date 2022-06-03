@@ -1,21 +1,22 @@
 import React from 'react';
-import UserPageTemplate from '../templates/UserPageTemplate';
+import GridTemplate from '../templates/GridTemplate';
 import Card from '../components/molecules/Card/Card';
 import { data } from '../data';
 
 const Articles = () => (
-  <UserPageTemplate pageType="article">
+  <GridTemplate pageType="articles">
     {data.articles.map(item => (
       <Card
-        cardType="article"
+        id={item.id}
+        cardType="articles"
         title={item.title}
         content={item.content}
-        articleUrl={item.articleUrl}
+        articlesUrl={item.articlesUrl}
         createdDate={item.created}
-        key={item.title}
+        key={item.id}
       ></Card>
     ))}
-  </UserPageTemplate>
+  </GridTemplate>
 );
 
 export default Articles;
