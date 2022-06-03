@@ -1,21 +1,22 @@
 import React from 'react';
-import UserPageTemplate from '../templates/UserPageTemplate';
+import GridTemplate from '../templates/GridTemplate';
 import Card from '../components/molecules/Card/Card';
 import { data } from '../data';
 
 const Twitters = () => (
-  <UserPageTemplate pageType="twitter">
+  <GridTemplate pageType="twitters">
     {data.twitters.map(item => (
       <Card
-        cardType="twitter"
+        id={item.id}
+        cardType="twitters"
         title={item.title}
         content={item.content}
-        twitterName={item.twitterName}
+        twittersName={item.twittersName}
         createdDate={item.created}
-        key={item.title}
+        key={item.id}
       ></Card>
     ))}
-  </UserPageTemplate>
+  </GridTemplate>
 );
 
 export default Twitters;

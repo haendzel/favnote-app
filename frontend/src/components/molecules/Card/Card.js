@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Navigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import Heading from '../../atoms/Heading/Heading';
@@ -44,7 +45,7 @@ const StyledHeading = styled(Heading)`
 const StyledAvatar = styled.img`
   width: 86px;
   height: 86px;
-  border: 5px solid ${({ theme }) => theme.twitter};
+  border: 5px solid ${({ theme }) => theme.twitters};
   border-radius: 50%;
   position: absolute;
   right: 25px;
@@ -64,33 +65,49 @@ const StyledLinkButton = styled.a`
   top: 20px;
 `;
 
-const Card = ({ cardType, title, createdDate, twitterUrl, articleUrl, content }) => (
-  <StyledWrapper>
-    <InnerWrapper activeColor={cardType}>
-      <StyledHeading>{title}</StyledHeading>
-      <DateInfo>{createdDate}</DateInfo>
-      {cardType === 'twitter' && <StyledAvatar src={twitterUrl} />}
-      {cardType === 'article' && <StyledLinkButton href={articleUrl} />}
-    </InnerWrapper>
-    <InnerWrapper flex>
-      <Paragraph>{content}</Paragraph>
-      <Button secondary>Remove</Button>
-    </InnerWrapper>
-  </StyledWrapper>
-);
+class Card extends Component {
+  state = {
+    redirect: false,
+  };
+
+  handleCardClick = () => this.setState({ redirect: true });
+
+  render() {
+    const { id, cardType, title, createdDate, twittersUrl, articlesUrl, content } = this.props;
+
+    if (this.state.redirect) {
+      return <Navigate to={`/${cardType}/${id}`} />;
+    }
+
+    return (
+      <StyledWrapper onClick={this.handleCardClick}>
+        <InnerWrapper activeColor={cardType}>
+          <StyledHeading>{title}</StyledHeading>
+          <DateInfo>{createdDate}</DateInfo>
+          {cardType === 'twitters' && <StyledAvatar src={twittersUrl} />}
+          {cardType === 'articles' && <StyledLinkButton href={articlesUrl} />}
+        </InnerWrapper>
+        <InnerWrapper flex>
+          <Paragraph>{content}</Paragraph>
+          <Button secondary>Remove</Button>
+        </InnerWrapper>
+      </StyledWrapper>
+    );
+  }
+}
 
 Card.propTypes = {
-  cardType: PropTypes.oneOf(['note', 'twitter', 'article']),
+  cardType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
   title: PropTypes.string.isRequired,
   createdDate: PropTypes.string.isRequired,
-  twitterUrl: PropTypes.string.isRequired,
-  articleUrl: PropTypes.string,
+  twittersUrl: PropTypes.string.isRequired,
+  articlesUrl: PropTypes.string,
   content: PropTypes.string.isRequired,
 };
 
 Card.defaultProps = {
-  cardType: 'note',
-  twitterUrl: 'https://pbs.twimg.com/profile_images/1529956155937759233/Nyn1HZWF_400x400.jpg',
+  cardType: 'notes',
+  twittersUrl: 'https://pbs.twimg.com/profile_images/1529956155937759233/Nyn1HZWF_400x400.jpg',
 };
 
 export default Card;
