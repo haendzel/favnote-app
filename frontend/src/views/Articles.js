@@ -1,21 +1,44 @@
 import React from 'react';
-import UserPageTemplate from '../templates/UserPageTemplate';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import GridTemplate from '../templates/GridTemplate';
 import Card from '../components/molecules/Card/Card';
-import { data } from '../data';
 
-const Articles = () => (
-  <UserPageTemplate pageType="article">
-    {data.articles.map(item => (
+const Articles = ({ articles }) => (
+  <GridTemplate pageType="articles">
+    {articles.map(({ title, content, articlesUrl, created, id }) => (
       <Card
-        cardType="article"
-        title={item.title}
-        content={item.content}
-        articleUrl={item.articleUrl}
-        createdDate={item.created}
-        key={item.title}
+        id={id}
+        cardType="articles"
+        title={title}
+        content={content}
+        articlesUrl={articlesUrl}
+        createdDate={created}
+        key={id}
       ></Card>
     ))}
-  </UserPageTemplate>
+  </GridTemplate>
 );
 
-export default Articles;
+Articles.propTypes = {
+  articles: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    cardType: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    twitterName: PropTypes.string.isRequired,
+    created: PropTypes.string.isRequired,
+  }),
+};
+
+Articles.defaultProps = {
+  notes: [],
+};
+
+const mapStateToProps = state => {
+  const { articles } = state;
+  console.log(state);
+  return { articles };
+};
+
+export default connect(mapStateToProps)(Articles);

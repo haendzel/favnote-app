@@ -1,21 +1,44 @@
 import React from 'react';
-import UserPageTemplate from '../templates/UserPageTemplate';
-import Card from '../components/molecules/Card/Card';
-import { data } from '../data';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import GridTemplate from 'templates/GridTemplate';
+import Card from 'components/molecules/Card/Card';
 
-const Twitters = () => (
-  <UserPageTemplate pageType="twitter">
-    {data.twitters.map(item => (
+const Twitters = ({ twitters }) => (
+  <GridTemplate pageType="twitters">
+    {twitters.map(({ title, content, twitterUrl, created, id }) => (
       <Card
-        cardType="twitter"
-        title={item.title}
-        content={item.content}
-        twitterName={item.twitterName}
-        createdDate={item.created}
-        key={item.title}
-      ></Card>
+        id={id}
+        cardType="twitters"
+        title={title}
+        content={content}
+        twitterUrl={twitterUrl}
+        createdDate={created}
+        key={id}
+      />
     ))}
-  </UserPageTemplate>
+  </GridTemplate>
 );
 
-export default Twitters;
+Twitters.propTypes = {
+  twitters: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    cardType: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    twitterUrl: PropTypes.string.isRequired,
+    created: PropTypes.string.isRequired,
+  }),
+};
+
+Twitters.defaultProps = {
+  twitters: [],
+};
+
+const mapStateToProps = state => {
+  const { twitters } = state;
+  console.log(state);
+  return { twitters };
+};
+
+export default connect(mapStateToProps)(Twitters);

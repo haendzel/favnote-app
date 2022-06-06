@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
+import { theme } from './mainTheme';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -22,6 +23,18 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Montserrat', sans-serif;
   }
 
-`
+  .articles {
+    background-color: ${theme.articles} !important;
+  }
+
+  .notes {
+    background-color: ${theme.notes} !important;
+  }
+
+  .twitters {
+    background-color: ${theme.twitters} !important;
+  }
+
+`;
 
 export default GlobalStyle;

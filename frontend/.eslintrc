@@ -1,6 +1,7 @@
 {
   "extends": ["airbnb", "prettier", "prettier/react"],
   "env": {
+    "window": true,
     "jest": true
   },
   "globals": {
