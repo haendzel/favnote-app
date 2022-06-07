@@ -37,7 +37,6 @@ Notes.defaultProps = {
 
 const mapStateToProps = state => {
   const { notes } = state;
-  console.log(state);
   return { notes };
 };
 

@@ -84,6 +84,11 @@ const rootReducer = (state = initialState, action) => {
     case 'REMOVE_ITEM':
       return {
         ...state,
+        [action.payload.itemType]: [...state[action.payload.itemType], action.payload.itemContent],
+      };
+    case 'ADD_ITEM':
+      return {
+        ...state,
         [action.payload.itemType]: [...state[action.payload.itemType]].filter(
           item => item.id !== action.payload.id,
         ),

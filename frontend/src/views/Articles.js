@@ -32,12 +32,11 @@ Articles.propTypes = {
 };
 
 Articles.defaultProps = {
-  notes: [],
+  articles: [],
 };
 
 const mapStateToProps = state => {
   const { articles } = state;
-  console.log(state);
   return { articles };
 };
 

@@ -37,7 +37,6 @@ Twitters.defaultProps = {
 
 const mapStateToProps = state => {
   const { twitters } = state;
-  console.log(state);
   return { twitters };
 };
 

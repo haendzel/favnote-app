@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Sidebar from '../components/organisms/Sidebar/Sidebar';
+import withContext from 'hoc/withContext';
 
 const UserPageTemplate = ({ children, pageType }) => (
   <>
@@ -18,4 +19,4 @@ UserPageTemplate.defaultProps = {
   pageType: 'notes',
 };
 
-export default UserPageTemplate;
+export default withContext(UserPageTemplate);
