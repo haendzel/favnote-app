@@ -79,9 +79,9 @@ class Card extends Component {
       id,
       cardType,
       title,
-      createdDate,
+      created,
       twittersUrl,
-      articlesUrl,
+      articleUrl,
       content,
       removeItem,
     } = this.props;
@@ -94,9 +94,9 @@ class Card extends Component {
       <StyledWrapper onClick={this.handleCardClick}>
         <InnerWrapper activeColor={cardType}>
           <StyledHeading>{title}</StyledHeading>
-          <DateInfo>{createdDate}</DateInfo>
+          <DateInfo>{created}</DateInfo>
           {cardType === 'twitters' && <StyledAvatar src={twittersUrl} />}
-          {cardType === 'articles' && <StyledLinkButton href={articlesUrl} />}
+          {cardType === 'articles' && <StyledLinkButton href={articleUrl} />}
         </InnerWrapper>
         <InnerWrapper flex>
           <Paragraph>{content}</Paragraph>
@@ -112,7 +112,7 @@ class Card extends Component {
 Card.propTypes = {
   cardType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
   title: PropTypes.string.isRequired,
-  createdDate: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
   twittersUrl: PropTypes.string.isRequired,
   articlesUrl: PropTypes.string,
   content: PropTypes.string.isRequired,

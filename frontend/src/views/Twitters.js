@@ -6,14 +6,14 @@ import Card from 'components/molecules/Card/Card';
 
 const Twitters = ({ twitters }) => (
   <GridTemplate pageType="twitters">
-    {twitters.map(({ title, content, twitterUrl, created, id }) => (
+    {twitters.map(({ title, content, twittersUrl, created, id }) => (
       <Card
         id={id}
         cardType="twitters"
         title={title}
         content={content}
-        twitterUrl={twitterUrl}
-        createdDate={created}
+        twittersUrl={twittersUrl}
+        created={created}
         key={id}
       />
     ))}
@@ -21,14 +21,16 @@ const Twitters = ({ twitters }) => (
 );
 
 Twitters.propTypes = {
-  twitters: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    cardType: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    twitterUrl: PropTypes.string.isRequired,
-    created: PropTypes.string.isRequired,
-  }),
+  twitters: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      cardType: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      twittersUrl: PropTypes.string.isRequired,
+      created: PropTypes.string.isRequired,
+    }),
+  ),
 };
 
 Twitters.defaultProps = {
@@ -37,6 +39,7 @@ Twitters.defaultProps = {
 
 const mapStateToProps = state => {
   const { twitters } = state;
+  console.log(state);
   return { twitters };
 };
 

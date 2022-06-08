@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Sidebar from '../components/organisms/Sidebar/Sidebar';
-import withContext from 'hoc/withContext';
 
 const UserPageTemplate = ({ children, pageType }) => (
   <>
@@ -11,12 +10,7 @@ const UserPageTemplate = ({ children, pageType }) => (
 );
 
 UserPageTemplate.propTypes = {
-  children: PropTypes.array.isRequired,
-  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
 };
 
-UserPageTemplate.defaultProps = {
-  pageType: 'notes',
-};
-
-export default withContext(UserPageTemplate);
+export default UserPageTemplate;
