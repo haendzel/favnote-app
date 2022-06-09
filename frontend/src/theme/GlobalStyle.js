@@ -35,6 +35,15 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${theme.twitters} !important;
   }
 
+  button { 
+    cursor: pointer;
+
+    &:hover { 
+      filter: brightness(1.033);
+      transition: filter 0.25s ease-in-out;
+    }
+  }
+
 `;
 
 export default GlobalStyle;

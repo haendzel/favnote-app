@@ -76,7 +76,7 @@ class Card extends Component {
 
   render() {
     const {
-      id,
+      _id,
       cardType,
       title,
       created,
@@ -87,12 +87,12 @@ class Card extends Component {
     } = this.props;
 
     if (this.state.redirect) {
-      return <Navigate to={`/${cardType}/${id}`} />;
+      return <Navigate to={`/${cardType}/${_id}`} />;
     }
 
     return (
-      <StyledWrapper onClick={this.handleCardClick}>
-        <InnerWrapper activeColor={cardType}>
+      <StyledWrapper>
+        <InnerWrapper onClick={this.handleCardClick} activeColor={cardType}>
           <StyledHeading>{title}</StyledHeading>
           <DateInfo>{created}</DateInfo>
           {cardType === 'twitters' && <StyledAvatar src={twittersUrl} />}
@@ -100,7 +100,7 @@ class Card extends Component {
         </InnerWrapper>
         <InnerWrapper flex>
           <Paragraph>{content}</Paragraph>
-          <Button onClick={() => removeItem(cardType, id)} secondary>
+          <Button onClick={() => removeItem(cardType, _id)} secondary>
             Remove
           </Button>
         </InnerWrapper>
@@ -110,9 +110,10 @@ class Card extends Component {
 }
 
 Card.propTypes = {
+  _id: PropTypes.string.isRequired,
   cardType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
   title: PropTypes.string.isRequired,
-  created: PropTypes.string.isRequired,
+  created: PropTypes.string,
   twittersUrl: PropTypes.string.isRequired,
   articlesUrl: PropTypes.string,
   content: PropTypes.string.isRequired,
@@ -125,7 +126,7 @@ Card.defaultProps = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  removeItem: (itemType, id) => dispatch(removeItem(itemType, id)),
+  removeItem: (itemType, _id) => dispatch(removeItem(itemType, _id)),
 });
 
 export default connect(null, mapDispatchToProps)(Card);

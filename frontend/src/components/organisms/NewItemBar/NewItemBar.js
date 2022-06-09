@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import withContext from 'hoc/withContext';
 import Heading from 'components/atoms/Heading/Heading';
 import { connect } from 'react-redux';
-import { addItem as addItemAction } from '../../../actions';
+import { addItem as addItemAction } from 'actions';
 
 const StyledWrapper = styled.div`
   border-left: 10px solid ${({ theme, activecolor }) => theme[activecolor]};
@@ -42,15 +42,15 @@ const StyledForm = styled(Form)`
   width: 100%;
 `;
 
-const NewItemBar = ({ pageType, isVisible, addItem }) => (
+const NewItemBar = ({ pageType, isVisible, addItem, handleClose }) => (
   <StyledWrapper isVisible={isVisible} activecolor={pageType}>
     <Formik
       initialValues={{ title: '', content: '', articleUrl: '', twittersUrl: '', created: '' }}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          addItem(pageType, values);
-          setSubmitting(false);
-        }, 400);
+        console.log(values);
+        addItem(pageType, values);
+        handleClose();
+        setSubmitting(false);
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
@@ -95,6 +95,9 @@ const NewItemBar = ({ pageType, isVisible, addItem }) => (
 
 NewItemBar.propTypes = {
   pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  isVisible: PropTypes.bool,
+  addItem: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 NewItemBar.defaultProps = {

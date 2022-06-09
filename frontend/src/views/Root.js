@@ -7,6 +7,8 @@ import Notes from './Notes';
 import Twitters from './Twitters';
 import Articles from './Articles';
 import DetailsPage from './DetailsPage';
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 
 export default function Root() {
   return (
@@ -14,7 +16,9 @@ export default function Root() {
       <BrowserRouter>
         <MainTemplate>
           <Routes>
-            <Route path="/" element={<Navigate to="/notes" />} />
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route path="/notes">
               <Route index element={<Notes />} />
               <Route path=":id" element={<DetailsPage />} />

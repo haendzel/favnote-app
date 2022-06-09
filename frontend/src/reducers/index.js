@@ -1,95 +1,45 @@
+import {
+  ADD_ITEM,
+  ADD_ITEM_SUCCESS,
+  REMOVE_ITEM_REQUEST,
+  REMOVE_ITEM_SUCCESS,
+  AUTH_REQUEST,
+  AUTH_FAILURE,
+  AUTH_SUCCESS,
+} from 'actions';
+import { FETCH_SUCCESS } from '../actions';
+
 const initialState = {
-  articles: [
-    {
-      id: 1,
-      title: 'React on my mind',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
-      created: '1 day',
-    },
-    {
-      id: 2,
-      title: 'Wish you React',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
-      created: '1 day',
-    },
-    {
-      id: 3,
-      title: 'You gave React a bad name',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
-      created: '5 days',
-    },
-    {
-      id: 4,
-      title: 'Is it React you looking for?',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
-      created: '10 days',
-    },
-  ],
-
-  notes: [
-    {
-      id: 1,
-      title: 'Wake me up when Vue ends',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-    },
-    {
-      id: 2,
-      title: 'Como es An Gular?',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-    },
-    {
-      id: 3,
-      title: 'Reactuj się kto moze!',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '10 days',
-    },
-  ],
-
-  twitters: [
-    {
-      id: 1,
-      title: 'Hello Roman',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-      twittersUrl: 'https://pbs.twimg.com/profile_images/1529956155937759233/Nyn1HZWF_400x400.jpg',
-    },
-    {
-      id: 2,
-      title: 'Redux guy',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-      twittersUrl: 'https://pbs.twimg.com/profile_images/1186027531327213568/C5i5qWBd_400x400.jpg',
-    },
-  ],
+  userID: '62a0a2ce1c9325b80f9a8766',
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_ITEM':
+    case FETCH_SUCCESS:
       return {
         ...state,
-        [action.payload.itemType]: [...state[action.payload.itemType], action.payload.item],
+        [action.payload.itemType]: [...action.payload.data],
       };
-    case 'REMOVE_ITEM':
+    case AUTH_FAILURE:
+      return {
+        ...state,
+        message: action.err.message,
+      };
+    case AUTH_SUCCESS:
+      return {
+        ...state,
+        userID: action.payload.data._id,
+      };
+    case ADD_ITEM_SUCCESS:
+      return {
+        ...state,
+        [action.payload.itemType]: [...state[action.payload.itemType], action.payload.data],
+      };
+    case REMOVE_ITEM_SUCCESS:
       return {
         ...state,
         [action.payload.itemType]: [
-          ...state[action.payload.itemType].filter(item => item.id !== action.payload.id),
+          ...state[action.payload.itemType].filter(item => item._id !== action.payload._id),
         ],
       };
     default:

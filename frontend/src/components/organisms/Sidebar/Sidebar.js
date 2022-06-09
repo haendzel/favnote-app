@@ -53,7 +53,7 @@ const Sidebar = ({ pageType }) => (
         <ButtonIcon as={NavLink} to="/articles" icon={bulbIcon} activeclass="active" />
       </NavButtons>
     </Nav>
-    <ButtonIcon icon={logoutIcon} />
+    <ButtonIcon icon={logoutIcon} as={NavLink} to="/login" />
   </SidebarNav>
 );
 
