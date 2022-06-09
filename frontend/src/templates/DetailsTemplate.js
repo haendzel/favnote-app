@@ -70,7 +70,6 @@ const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitte
       </StyledPageHeader>
       <Paragraph>{content}</Paragraph>
       {pageType === 'articles' && <StyledLink href={articleUrl}>Open article</StyledLink>}
-      {pageType === 'twitters' && <StyledImage alt={title} src={twitterUrl} />}
       <Button as={StyledButton} to={`/${pageType}`} className={pageType}>
         save / close
       </Button>

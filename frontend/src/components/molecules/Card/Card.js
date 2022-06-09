@@ -44,15 +44,15 @@ const StyledHeading = styled(Heading)`
   margin: 5px 0 0;
 `;
 
-const StyledAvatar = styled.img`
-  width: 86px;
-  height: 86px;
-  border: 5px solid ${({ theme }) => theme.twitters};
-  border-radius: 50%;
-  position: absolute;
-  right: 25px;
-  top: 25px;
-`;
+// const StyledAvatar = styled.img`
+//   width: 86px;
+//   height: 86px;
+//   border: 5px solid ${({ theme }) => theme.twitters};
+//   border-radius: 50%;
+//   position: absolute;
+//   right: 25px;
+//   top: 25px;
+// `;
 
 const StyledLinkButton = styled.a`
   display: block;
@@ -95,7 +95,6 @@ class Card extends Component {
         <InnerWrapper onClick={this.handleCardClick} activeColor={cardType}>
           <StyledHeading>{title}</StyledHeading>
           <DateInfo>{created}</DateInfo>
-          {cardType === 'twitters' && <StyledAvatar src={twittersUrl} />}
           {cardType === 'articles' && <StyledLinkButton href={articleUrl} />}
         </InnerWrapper>
         <InnerWrapper flex>
@@ -111,7 +110,7 @@ class Card extends Component {
 
 Card.propTypes = {
   _id: PropTypes.string.isRequired,
-  cardType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  cardType: PropTypes.oneOf(['notes', 'articles']),
   title: PropTypes.string.isRequired,
   created: PropTypes.string,
   twittersUrl: PropTypes.string.isRequired,

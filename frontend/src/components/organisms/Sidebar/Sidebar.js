@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import bulbIcon from '../../../assets/icons/bulb.svg';
 import penIcon from '../../../assets/icons/pen.svg';
-import twittersIcon from '../../../assets/icons/twitter.svg';
 import logoutIcon from '../../../assets/icons/logout.svg';
 import logo from '../../../assets/icons/logo.svg';
 
@@ -49,7 +48,6 @@ const Sidebar = ({ pageType }) => (
       <BrandLink href="/" />
       <NavButtons>
         <ButtonIcon as={NavLink} to="/notes" icon={penIcon} activeclass="active" />
-        <ButtonIcon as={NavLink} to="/twitters" icon={twittersIcon} activeclass="active" />
         <ButtonIcon as={NavLink} to="/articles" icon={bulbIcon} activeclass="active" />
       </NavButtons>
     </Nav>

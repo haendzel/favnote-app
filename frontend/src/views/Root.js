@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import store from '../store';
 import MainTemplate from 'templates/MainTemplate';
 import Notes from './Notes';
-import Twitters from './Twitters';
 import Articles from './Articles';
 import DetailsPage from './DetailsPage';
 import LoginPage from './LoginPage';
@@ -21,10 +20,6 @@ export default function Root() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/notes">
               <Route index element={<Notes />} />
-              <Route path=":id" element={<DetailsPage />} />
-            </Route>
-            <Route path="/twitters">
-              <Route index element={<Twitters />} />
               <Route path=":id" element={<DetailsPage />} />
             </Route>
             <Route path="/articles">

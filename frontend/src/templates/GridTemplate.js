@@ -103,7 +103,7 @@ class GridTemplate extends Component {
 
 GridTemplate.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object).isRequired,
-  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  pageType: PropTypes.oneOf(['notes', 'articles']),
 };
 
 GridTemplate.defaultProps = {

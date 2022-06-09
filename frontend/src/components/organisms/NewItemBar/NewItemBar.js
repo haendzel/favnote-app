@@ -59,11 +59,11 @@ const NewItemBar = ({ pageType, isVisible, addItem, handleClose }) => (
           <StyledInput
             as={Field}
             type="text"
-            value={pageType === 'twitters' ? values.twittersUrl : values.title}
+            value={values.title}
             onChange={handleChange}
             onBlur={handleBlur}
-            name={pageType === 'twitters' ? 'twittersUrl' : 'title'}
-            placeholder={pageType === 'twitters' ? 'Twitter url' : 'title'}
+            name="title"
+            placeholder="title"
           />
           {pageType === 'articles' && (
             <StyledInput
@@ -94,7 +94,7 @@ const NewItemBar = ({ pageType, isVisible, addItem, handleClose }) => (
 );
 
 NewItemBar.propTypes = {
-  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  pageType: PropTypes.oneOf(['notes', 'articles']),
   isVisible: PropTypes.bool,
   addItem: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,

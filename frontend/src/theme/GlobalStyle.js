@@ -31,10 +31,6 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${theme.notes} !important;
   }
 
-  .twitters {
-    background-color: ${theme.twitters} !important;
-  }
-
   button { 
     cursor: pointer;
 
